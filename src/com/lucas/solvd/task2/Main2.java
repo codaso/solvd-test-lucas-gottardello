@@ -2,20 +2,17 @@ package com.lucas.solvd.task2;
 
 public class Main2 {
     static void Task_2(){
-        //task_2
         int [] array = {3, 7, 6, 13, 33, 9, -100, 25};
         int i = 0;
-        boolean print_once = true;
+        //print array
         while ( i < array.length){
             System.out.println(array[i]);
             i++;
-            if (print_once){
-                array_min_and_max(array);
-                System.out.println("Smallest array2 value is: " + array[0]);
-                System.out.println("Biggest array2 value is: " + array[1]);
-                print_once = false;
-            }
         }
+        array_min_and_max(array);
+        //print array min value and max value
+        System.out.println("Smallest array value is: " + array[0]);
+        System.out.println("Biggest array value is: " + array[1]);
 
     }
     static int[] array_min_and_max(int[] arg){

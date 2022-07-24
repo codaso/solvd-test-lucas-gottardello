@@ -9,13 +9,13 @@ public class Main2 {
             System.out.println(array[i]);
             i++;
         }
-        array_min_and_max(array);
+        Array_min_and_max(array);
         //print array min value and max value
         System.out.println("Smallest array value is: " + array[0]);
         System.out.println("Biggest array value is: " + array[1]);
 
     }
-    static int[] array_min_and_max(int[] arg){
+    static int[] Array_min_and_max(int[] arg){
         int min =0;
         int max =0;
         for ( int i=0; i<arg.length ;i++ ){

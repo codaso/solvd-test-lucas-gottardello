@@ -26,9 +26,6 @@ public class Patient extends Hospital{
         else {
             return false;
         }
-
-
     }
-
 
 }

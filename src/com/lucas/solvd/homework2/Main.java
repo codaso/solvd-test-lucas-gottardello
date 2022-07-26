@@ -1,6 +1,6 @@
 package com.lucas.solvd.homework2;
 
-public class Main extends Hospital{
+public class Main {
     public static void main(String[] args) {
 
         Patient zero = new Patient();
@@ -13,13 +13,10 @@ public class Main extends Hospital{
         Prescription p = new Prescription();
         Appointment a = new Appointment();
 
-        d.SetDiagnosis(zero);
-        t.SetTreatment(d);
-        p.SetPrescription(t);
-        a.SetAppointment(p);
-
-
-
+        d.setDiagnosis(zero);
+        t.setTreatment(d);
+        p.setPrescription(t);
+        a.setAppointment(p);
 
 
         //System.out.println(d.patientDiagnosis);

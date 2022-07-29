@@ -8,7 +8,7 @@ public class Appointment {
     private Patient turnPatient;
 
     //Constructor
-    public Appointment(String doctor, Patient patient) {
+    public Appointment(String doctor, Patient patient, Date date) {
         //appointmentsList.add(doctor,patient);
 
 

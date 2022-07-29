@@ -1,13 +1,17 @@
 package com.lucas.solvd.homework2;
 
-public class Appointment extends Hospital {
-    private int amountOfAppointments;
+import java.util.ArrayList;
 
+public class Appointment {
+    ArrayList<Appointment> appointmentsList;
+    private String assignedDoctor;
+    private Patient turnPatient;
 
     //Constructor
-    public Appointment(Doctor doctor, Patient patient, Date date) {
-        this.amountOfAppointments++;
-        patient.payment = patient.payment + doctor.getSalary();
+    public Appointment(String doctor, Patient patient) {
+        //appointmentsList.add(doctor,patient);
+
+        //patient.payment = patient.payment + doctor.getSalary();
 
     }
 

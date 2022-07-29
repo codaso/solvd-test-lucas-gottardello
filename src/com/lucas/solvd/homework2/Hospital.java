@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public abstract class Hospital {
     ArrayList<Patient> patientsList;
-    ArrayList<Appointment> appointmentsList;
+
 
 }

@@ -1,12 +1,12 @@
 package com.lucas.solvd.homework2;
 
 public class Date {
-    public String day;
-    public String month;
-    public String year;
+    public int day;
+    public int month;
+    public int year;
 
     //Constructor
-    public Date(String day, String month, String year) {
+    public Date(int day, int month, int year) {
         this.day = day;
         this.month = month;
         this.year = year;

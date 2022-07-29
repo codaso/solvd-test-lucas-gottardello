@@ -4,6 +4,7 @@ package com.lucas.solvd.homework2;
 public class Register extends Hospital {
     private int amountOfPatients;
     private String assignedDoctor;
+    private Doctor doctor;
 
     //Constructor
     public Register(Patient patient, String problem) {
@@ -11,14 +12,21 @@ public class Register extends Hospital {
         patient.setProblem(problem);
         patientsList.add(patient);
         System.out.println("Patient: " + patient.getName() + "is now registered");
-        if (patient.getProblem() == "Fracture") {
+
+        //check problem,
+        if (problem == "Fracture") {
             this.assignedDoctor = "Traumatologist";
-        } else if (patient.getProblem() == "Primary care") {
-            this.assignedDoctor = "Primary care";
-        } else if (patient.getProblem() == "Baby-checkup") {
-            this.assignedDoctor = "Baby-checkup";
+            this.doctor = new Traumatologist();
+        } else if (problem == "Primary care") {
+            this.assignedDoctor = "Clinician";
+            this.doctor = new Clinician();
+        } else if (problem == "Baby-checkup") {
+            this.assignedDoctor = "Pediatrician";
+            this.doctor = new Pediatrician();
         }
-        Appointment appointment = new Appointment(assignedDoctor, patient);
+        //Add cost to patient's payment variable
+        patient.payment = patient.payment + doctor.getSalary();
+        //Appointment appointment = new Appointment(assignedDoctor, patient);
     }
 
     //Getters

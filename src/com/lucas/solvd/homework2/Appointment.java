@@ -11,7 +11,6 @@ public class Appointment {
     public Appointment(String doctor, Patient patient) {
         //appointmentsList.add(doctor,patient);
 
-        //patient.payment = patient.payment + doctor.getSalary();
 
     }
 

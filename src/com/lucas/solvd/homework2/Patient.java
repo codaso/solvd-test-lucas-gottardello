@@ -4,7 +4,7 @@ public class Patient extends Human {
     private String gender = "Unknown";
     private int age;
     private String problem = "Unspecified";
-    public int payment;
+    public int payment = 0;
 
     //Constructors
     public Patient() {

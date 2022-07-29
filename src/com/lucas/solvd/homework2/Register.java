@@ -17,7 +17,7 @@ public class Register extends Hospital {
             this.assignedDoctor = "Traumatologist";
         } else if (problem == "Primary care") {
             this.assignedDoctor = "Clinician";
-        } else if (problem == "Baby-checkup") {
+        } else if (problem == "Baby-checkup" && patient.getAge() < 9) {
             this.assignedDoctor = "Pediatrician";
         }
         //Add cost to patient's payment variable

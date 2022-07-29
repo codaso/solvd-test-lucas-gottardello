@@ -12,4 +12,16 @@ public class Date {
         this.year = year;
     }
 
+    //Getters
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
 }

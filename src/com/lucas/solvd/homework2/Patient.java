@@ -1,31 +1,47 @@
 package com.lucas.solvd.homework2;
 
-public class Patient extends Hospital{
-    public String patientName;
-    private String id;
-    public int age;
-    public String gender;
+public class Patient extends Human {
+    private String gender = "Unknown";
+    private int age;
+    private String problem = "Unspecified";
+    public int payment;
 
-
-    @Override
-    public int hashCode(){
-        return patientName.hashCode()  + gender.hashCode();
+    //Constructors
+    public Patient() {
+        super();
     }
 
-    @Override
-    public String toString(){
-        return "[Patient name : " + patientName + ", Age: " + age + ", Gender: " + gender +"]";
+    public Patient(String name, String lastName, String gender, int age) {
+        super(name, lastName);
+        this.age = age;
+        this.gender = gender;
     }
 
-    @Override
-    public boolean equals (Object o){
-        Patient p = (Patient) o;
-        if (p.patientName==this.patientName && p.gender==this.gender){
-            return  true;
-        }
-        else {
-            return false;
-        }
+    //setters
+    public void setGender(String gender) {
+        this.gender = gender;
     }
+
+    public void setAge(String age) {
+        this.gender = age;
+    }
+
+    public void setProblem(String problem) {
+        this.problem = problem;
+    }
+
+    //getters
+    public String getGender() {
+        return this.gender;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public String getProblem() {
+        return this.problem;
+    }
+
 
 }

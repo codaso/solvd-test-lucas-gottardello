@@ -1,21 +1,21 @@
 package com.lucas.solvd.homework2;
 
-public class Clinic extends Doctor implements Physician {
-    private final String className = "Clinic";
+public class Clinician extends Doctor implements Physician {
+    private final String className = "Clinician";
 
     //constructors
-    public Clinic() {
+    public Clinician() {
         super();
     }
 
-    public Clinic(String name, String lastName) {
-        super(name, lastName, "Clinic");
+    public Clinician(String name, String lastName) {
+        super(name, lastName, "Clinician");
     }
 
 
     //methods from interface Physician
     public void specialtyPrint() {
-        System.out.println("I am a: " + className);
+        System.out.println("I am a: " + className + " and my specialty is to focus on primary care");
     }
 
     public int cost() {

@@ -1,12 +1,14 @@
 package com.lucas.solvd.homework2;
 
-public class Appointment extends Prescription {
+public class Appointment extends Hospital {
+    private int amountOfAppointments;
 
-    public String patientAppointment;
 
-    public void setAppointment(Prescription prescription) {
-        this.patientAppointment = prescription.patientPrescription + ", your appointment is on day X on Hospital Y";
-
+    //Constructor
+    public Appointment(Doctor doctor, Patient patient, Date date) {
+        this.amountOfAppointments++;
+        patient.payment = patient.payment + doctor.getSalary();
 
     }
+
 }

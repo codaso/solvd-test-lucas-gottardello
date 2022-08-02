@@ -22,5 +22,12 @@ public class Main {
         hospital.registerAppointment(appointment);
 
 
+        int a = 1;
+        int b = 2;
+        while (a < b) {
+            a++;
+        }
+
+
     }
 }

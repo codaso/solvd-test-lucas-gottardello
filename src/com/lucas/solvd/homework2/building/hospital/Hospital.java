@@ -19,6 +19,7 @@ public class Hospital extends Building implements HospitalInterface {
 
     public static ArrayList<Doctor> doctorsList = null;
     public static ArrayList<Patient> patientsList = null;
+    public static ArrayList<Patient> appointmentList = null;
 
 
     public void registerPatient(Patient patient) {

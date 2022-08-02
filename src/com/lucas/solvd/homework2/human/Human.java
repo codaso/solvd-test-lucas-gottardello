@@ -1,8 +1,9 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.human;
 
 public abstract class Human {
     private String name = "Unknown";
     private String lastName = "Unknown";
+
 
     //constructors
     public Human() {
@@ -36,7 +37,7 @@ public abstract class Human {
     //overrides
     @Override
     public int hashCode() {
-        return name.hashCode() + lastName.hashCode();
+        return name.hashCode() + lastName.hashCode() + +(short) Math.random() * 31000;
     }
 
     @Override

@@ -1,10 +1,13 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.human.patient;
+
+import com.lucas.solvd.homework2.human.Human;
 
 public class Patient extends Human {
+    private int patientID;
     private String gender = "Unknown";
     private int age;
-    private String problem = "Unspecified";
-    public int payment = 0;
+    public int patientBalance;
+
 
     //Constructors
     public Patient() {
@@ -15,6 +18,7 @@ public class Patient extends Human {
         super(name, lastName);
         this.age = age;
         this.gender = gender;
+        this.patientID = hashCode();
     }
 
     //setters
@@ -26,10 +30,6 @@ public class Patient extends Human {
         this.gender = age;
     }
 
-    public void setProblem(String problem) {
-        this.problem = problem;
-    }
-
     //getters
     public String getGender() {
         return this.gender;
@@ -39,8 +39,8 @@ public class Patient extends Human {
         return this.age;
     }
 
-    public String getProblem() {
-        return this.problem;
+    public int getPatientID() {
+        return patientID;
     }
 
 

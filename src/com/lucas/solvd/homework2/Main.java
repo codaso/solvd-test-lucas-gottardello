@@ -1,5 +1,6 @@
 package com.lucas.solvd.homework2;
 
+import com.lucas.solvd.homework2.building.hospital.Appointment;
 import com.lucas.solvd.homework2.building.hospital.Hospital;
 import com.lucas.solvd.homework2.human.doctor.Doctor;
 import com.lucas.solvd.homework2.human.doctor.specialty.Traumatologist;
@@ -15,6 +16,10 @@ public class Main {
         hospital.registerDoctor(juan);
         Patient lucas = new Patient("Lucas", "Gottar", "male", 18);
         hospital.registerPatient(lucas);
+
+        Date date = new Date(1, 9, 2022);
+        Appointment appointment = new Appointment(juan, lucas, date);
+        hospital.registerAppointment(appointment);
 
 
     }

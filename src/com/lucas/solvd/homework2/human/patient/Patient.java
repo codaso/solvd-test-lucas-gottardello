@@ -6,7 +6,7 @@ public class Patient extends Human {
     private int patientID;
     private String gender = "Unknown";
     private int age;
-    public int patientBalance;
+    public int patientBalance = 0;
 
 
     //Constructors

@@ -1,11 +1,14 @@
-package com.lucas.solvd.homework2.human.patient;
+package com.lucas.solvd.homework2.human;
 
-import com.lucas.solvd.homework2.human.Human;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Patient extends Human {
+    Logger logger = LogManager.getLogger(Patient.class);
     private int patientID;
-    private String gender = "Unknown";
-    private int age;
+    public String gender = "Unknown";
+    public int age;
+    public Injury injury;
     public int patientBalance = 0;
 
 
@@ -31,16 +34,14 @@ public class Patient extends Human {
     }
 
     //getters
-    public String getGender() {
-        return this.gender;
-    }
-
-    public int getAge() {
-        return this.age;
-    }
-
     public int getPatientID() {
         return patientID;
+    }
+
+    //override
+    @Override
+    public void typeOfHuman() {
+        logger.info("My type of human is Patient");
     }
 
 

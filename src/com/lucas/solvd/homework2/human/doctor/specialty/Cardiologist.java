@@ -3,26 +3,16 @@ package com.lucas.solvd.homework2.human.doctor.specialty;
 import com.lucas.solvd.homework2.human.doctor.Doctor;
 import com.lucas.solvd.homework2.human.doctor.IDoctor;
 
-
-public final class Clinician extends Doctor implements IDoctor {
-
-    //constructors
-    public Clinician() {
-        super();
+public class Cardiologist extends Doctor implements IDoctor {
+    public Cardiologist(String name, String lastname) {
+        super(name, lastname, 600);
     }
-
-    public Clinician(String name, String lastName) {
-        super(name, lastName, 200);
-    }
-
 
     public int treatmentCost() {
         return getSalary();
     }
 
     public String prescription() {
-        return "I'll make a regular inspection";
+        return "Reduce stress, don't eat fast food and come check yourself with me for 1 month";
     }
-
-
 }

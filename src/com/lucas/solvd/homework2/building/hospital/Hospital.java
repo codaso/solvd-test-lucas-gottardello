@@ -1,12 +1,18 @@
 package com.lucas.solvd.homework2.building.hospital;
 
 import com.lucas.solvd.homework2.building.Building;
-import com.lucas.solvd.homework2.human.doctor.Doctor;
-import com.lucas.solvd.homework2.human.patient.Patient;
+import com.lucas.solvd.homework2.human.Injury;
+import com.lucas.solvd.homework2.human.Patient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class Hospital extends Building implements HospitalInterface {
+public class Hospital extends Building implements IHospital {
+    Logger logger = LogManager.getLogger(Hospital.class);
+    public int amountOfPatients;
+    public int amountOfAppointments;
+
 
     public Hospital() {
         super("");
@@ -14,24 +20,42 @@ public class Hospital extends Building implements HospitalInterface {
 
 
     public Hospital(String hospitalName) {
+
         super(hospitalName);
+
     }
 
-    public static ArrayList<Doctor> doctorsList = new ArrayList<Doctor>();
+
     public static ArrayList<Patient> patientsList = new ArrayList<Patient>();
     public static ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
 
-
+    //iHospital implementations
     public void registerPatient(Patient patient) {
+        amountOfPatients++;
         patientsList.add(patient);
     }
 
-    public void registerDoctor(Doctor doctor) {
-        doctorsList.add(doctor);
-    }
 
     public void registerAppointment(Appointment appointment) {
+        amountOfAppointments++;
         appointmentList.add(appointment);
+    }
+
+    public boolean searchDate(int day) {
+        return appointmentList.contains(day);
+    }
+
+    public boolean instantTreatment(Injury injury) {
+        if (injury.painLevel > 6 || injury.annoyance == "heart") {
+            return true;
+        }
+        return false;
+    }
+
+    //Override
+    @Override
+    public void typeOfBuilding() {
+        logger.info("My time of building is Hospital");
     }
 
 

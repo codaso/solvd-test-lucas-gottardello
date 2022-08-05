@@ -1,14 +1,11 @@
 package com.lucas.solvd.homework2.human.doctor.specialty;
 
 import com.lucas.solvd.homework2.human.doctor.Doctor;
-import com.lucas.solvd.homework2.human.doctor.interfaces.DoctorInterfaces;
-import com.lucas.solvd.homework2.human.doctor.interfaces.specialty.TraumatologistInterface;
-import com.lucas.solvd.homework2.human.patient.Patient;
+import com.lucas.solvd.homework2.human.doctor.IDoctor;
 
-public final class Traumatologist extends Doctor implements TraumatologistInterface, DoctorInterfaces {
 
-    private final String className = "Traumatologist";
-    public int salary = 800;
+public final class Traumatologist extends Doctor implements IDoctor {
+
 
     //constructors
     public Traumatologist() {
@@ -17,16 +14,17 @@ public final class Traumatologist extends Doctor implements TraumatologistInterf
 
     public Traumatologist(String name, String lastName) {
 
-        super(name, lastName);
+        super(name, lastName, 800);
     }
 
 
     public int treatmentCost() {
-        return 800;
+        return getSalary();
     }
 
-    public void repairBones(Patient patient) {
-        patient.patientBalance = patient.patientBalance + 200;
+    public String prescription() {
+        return "You need to exercise X part of your body for 3 months";
     }
+
 
 }

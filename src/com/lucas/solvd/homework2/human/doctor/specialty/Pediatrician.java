@@ -1,14 +1,10 @@
 package com.lucas.solvd.homework2.human.doctor.specialty;
 
 import com.lucas.solvd.homework2.human.doctor.Doctor;
-import com.lucas.solvd.homework2.human.doctor.interfaces.DoctorInterfaces;
-import com.lucas.solvd.homework2.human.doctor.interfaces.specialty.PediatricianInterface;
-import com.lucas.solvd.homework2.human.patient.Patient;
+import com.lucas.solvd.homework2.human.doctor.IDoctor;
 
 
-public final class Pediatrician extends Doctor implements PediatricianInterface, DoctorInterfaces {
-    private final String className = "Pediatrician";
-    public int salary = 700;
+public final class Pediatrician extends Doctor implements IDoctor {
 
     //constructors
     public Pediatrician() {
@@ -17,16 +13,16 @@ public final class Pediatrician extends Doctor implements PediatricianInterface,
 
     public Pediatrician(String name, String lastName) {
 
-        super(name, lastName);
+        super(name, lastName, 800);
     }
 
 
     public int treatmentCost() {
-        return salary;
+        return getSalary();
     }
 
-    public void babyCheckUp(Patient patient) {
-        patient.patientBalance = patient.patientBalance + 300;
+    public String prescription() {
+        return "Come check yourself with me 3 days a week";
     }
 
 

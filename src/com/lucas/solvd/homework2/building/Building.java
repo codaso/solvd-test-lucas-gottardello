@@ -16,4 +16,6 @@ public abstract class Building {
     public int getBuildingID() {
         return buildingID;
     }
+
+    public abstract void typeOfBuilding();
 }

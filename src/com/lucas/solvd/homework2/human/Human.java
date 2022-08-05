@@ -23,7 +23,6 @@ public abstract class Human {
         this.lastName = lastName;
     }
 
-
     //getters
     public String getName() {
         return this.name;
@@ -33,6 +32,8 @@ public abstract class Human {
         return this.lastName;
     }
 
+    //abstract method
+    public abstract void typeOfHuman();
 
     //overrides
     @Override

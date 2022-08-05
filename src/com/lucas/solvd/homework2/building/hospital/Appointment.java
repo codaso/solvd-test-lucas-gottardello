@@ -1,18 +1,18 @@
 package com.lucas.solvd.homework2.building.hospital;
 
 import com.lucas.solvd.homework2.Date;
-import com.lucas.solvd.homework2.human.doctor.Doctor;
-import com.lucas.solvd.homework2.human.patient.Patient;
+import com.lucas.solvd.homework2.human.Patient;
 
-public class Appointment extends Hospital {
-    Doctor doctor;
+public class Appointment {
+
     Patient patient;
     Date date;
+    boolean appointmentDone;
 
-    public Appointment(Doctor doctor, Patient patient, Date date) {
-        this.doctor = doctor;
+    public Appointment(Patient patient, Date date) {
         this.patient = patient;
         this.date = date;
+        appointmentDone = false;
     }
 
 }

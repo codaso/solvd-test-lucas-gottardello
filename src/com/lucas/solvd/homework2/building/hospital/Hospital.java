@@ -1,5 +1,6 @@
 package com.lucas.solvd.homework2.building.hospital;
 
+import com.lucas.solvd.homework2.Date;
 import com.lucas.solvd.homework2.building.Building;
 import com.lucas.solvd.homework2.human.Injury;
 import com.lucas.solvd.homework2.human.Patient;
@@ -41,8 +42,8 @@ public class Hospital extends Building implements IHospital {
         appointmentList.add(appointment);
     }
 
-    public boolean searchDate(int day) {
-        return appointmentList.contains(day);
+    public boolean searchDate(Date date) {
+        return appointmentList.contains(date);
     }
 
     public boolean instantTreatment(Injury injury) {

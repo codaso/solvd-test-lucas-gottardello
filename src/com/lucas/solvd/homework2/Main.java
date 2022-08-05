@@ -14,6 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         Hospital hospital = new Hospital("BestHospital");
+        //flow:create patient, patient decides if check now or schedule a day
+        //if check now--> check with regular doctor,patient describes problem
+        //doctor decides if instant treatment, if yes-->treat, no-->make an appointment
 
 
         //create patient

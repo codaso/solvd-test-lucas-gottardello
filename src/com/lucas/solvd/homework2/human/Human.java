@@ -43,13 +43,13 @@ public abstract class Human {
 
     @Override
     public String toString() {
-        return "[Human name : " + name + ", Human last name: " + lastName + "]";
+        return "[Name : " + name + ", Last name: " + lastName + "]";
     }
 
     @Override
     public boolean equals(Object o) {
         Human h = (Human) o;
-        if (h.name == this.name && h.lastName == this.lastName) {
+        if (h.name == this.name && h.lastName == this.lastName && h.hashCode() == this.hashCode()) {
             return true;
         } else {
             return false;

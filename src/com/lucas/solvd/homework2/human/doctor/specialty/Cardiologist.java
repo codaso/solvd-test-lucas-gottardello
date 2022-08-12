@@ -13,6 +13,6 @@ public class Cardiologist extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "Reduce stress, don't eat fast food and come check yourself with me for 1 month";
+        return "Cardiologist examination: Reduce stress, don't eat fast food and come check yourself with me for 1 month";
     }
 }

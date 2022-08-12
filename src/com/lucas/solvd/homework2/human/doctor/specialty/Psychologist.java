@@ -13,6 +13,6 @@ public class Psychologist extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "Come visit me 2 days a week and take this pills";
+        return "Psychologist examination: Come visit me 2 days a week and take this pills";
     }
 }

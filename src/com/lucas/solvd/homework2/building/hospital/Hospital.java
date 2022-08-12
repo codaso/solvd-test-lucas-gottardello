@@ -1,6 +1,5 @@
 package com.lucas.solvd.homework2.building.hospital;
 
-import com.lucas.solvd.homework2.Date;
 import com.lucas.solvd.homework2.building.Building;
 import com.lucas.solvd.homework2.human.Injury;
 import com.lucas.solvd.homework2.human.Patient;
@@ -26,9 +25,8 @@ public class Hospital extends Building implements IHospital {
 
     }
 
-
     public static ArrayList<Patient> patientsList = new ArrayList<Patient>();
-    public static ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+    public static ArrayList<Appointment> appointmentList = new ArrayList<>();
 
     //iHospital implementations
     public void registerPatient(Patient patient) {
@@ -36,14 +34,34 @@ public class Hospital extends Building implements IHospital {
         patientsList.add(patient);
     }
 
+    public int getAmountOfPatients() {
+        return amountOfPatients;
+    }
+
+    int getPatientListSize() {
+        return patientsList.size();
+    }
 
     public void registerAppointment(Appointment appointment) {
         amountOfAppointments++;
         appointmentList.add(appointment);
     }
 
-    public boolean searchDate(Date date) {
-        return appointmentList.contains(date);
+    public int getAmountOfAppointments() {
+        return amountOfAppointments;
+    }
+
+
+    public void printAppointments() {
+        for (Appointment e : appointmentList) {
+            logger.info(e.patient.getName() + " " + e.patient.getLastName());
+            logger.info("Appointment on date: " + e.date.day + "/" + e.date.month + "/" + e.date.year);
+        }
+    }
+
+    public boolean searchDate(Appointment appointment) {
+
+        return appointmentList.contains(appointment);
     }
 
     public boolean instantTreatment(Injury injury) {

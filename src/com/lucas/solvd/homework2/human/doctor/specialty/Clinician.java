@@ -21,7 +21,7 @@ public final class Clinician extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "I'll make a regular inspection";
+        return "Clinician examination: I'll make a regular inspection";
     }
 
 

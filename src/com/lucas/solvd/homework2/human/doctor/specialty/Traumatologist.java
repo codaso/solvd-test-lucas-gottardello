@@ -23,7 +23,7 @@ public final class Traumatologist extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "You need to exercise X part of your body for 3 months";
+        return "Traumatologist examination: You need to exercise X part of your body for 3 months";
     }
 
 

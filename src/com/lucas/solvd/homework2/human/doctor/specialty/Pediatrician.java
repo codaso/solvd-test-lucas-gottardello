@@ -22,7 +22,7 @@ public final class Pediatrician extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "Come check yourself with me 3 days a week";
+        return "Pediatrician examination: Come check yourself with me 3 days a week";
     }
 
 

@@ -13,6 +13,6 @@ public class Dermatologist extends Doctor implements IDoctor {
     }
 
     public String prescription() {
-        return "Use this *product* for your skin every 3 days";
+        return "Dermatologist examination: Use this *product* for your skin every 3 days";
     }
 }

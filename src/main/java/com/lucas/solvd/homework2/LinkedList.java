@@ -73,7 +73,6 @@ public class LinkedList<T> {
 
     void _removeNode(Node curr, T val) {
         if (curr.next == null) {
-            System.out.println("value doesn't exist");
             return;
         } else if (curr.next.value == val) {
             Node toDelete = new Node(val);
@@ -97,7 +96,6 @@ public class LinkedList<T> {
 
     public Node retrieveNode(Node t) {
         if (this.root == null) {
-            System.out.println("Node is not on the list");
             return null;
         } else return _retrieveNode(this.root, t);
     }
@@ -105,11 +103,9 @@ public class LinkedList<T> {
     Node _retrieveNode(Node curr, Node t) {
 
         if (curr.id == t.id) {
-            System.out.println("This node WAS on the list");
             return curr;
         }
         if (curr.next == null) {
-            System.out.println("End of the list, node was not found");
             return null;
         }
         return _retrieveNode(curr.next, t);
@@ -134,15 +130,16 @@ public class LinkedList<T> {
     }
 
 
+    /*
     public static void main(String[] args) {
-        /*
+
         LinkedList<String> list = new LinkedList<>();
         list.add("a");
         list.add("b");
         list.add("c");
         list.add("d");
         list.add("f");
-        list.addObject(p);
+
         list.add("g");
         list.printAllValues(list.root);
 
@@ -160,12 +157,16 @@ public class LinkedList<T> {
         list.retrieveNode(test);
         list.printAllValues(list.root);
 
-        Clinician p = new Clinician("Hugo", "Morales");
-        System.out.println(list.retrieveObject(p));
-        */
+        Clinician cl = new Clinician("Hugo", "Morales");
+        list.addObject(cl);
+        System.out.println(list.retrieveObject(cl));
 
 
     }
+
+
+
+     */
 
 }
 

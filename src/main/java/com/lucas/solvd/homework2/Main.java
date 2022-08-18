@@ -2,7 +2,7 @@ package com.lucas.solvd.homework2;
 
 import com.lucas.solvd.homework2.building.hospital.Appointment;
 import com.lucas.solvd.homework2.building.hospital.Hospital;
-import com.lucas.solvd.homework2.building.hospital.Treatment;
+import com.lucas.solvd.homework2.human.Human;
 import com.lucas.solvd.homework2.human.Injury;
 import com.lucas.solvd.homework2.human.Patient;
 import com.lucas.solvd.homework2.human.doctor.specialty.Clinician;
@@ -16,18 +16,13 @@ public class Main {
         Hospital hospital = new Hospital("BestHospital");
         hospital.loadDoctors();
         hospital.printDoctorList();
-
-
         //flow:create patient, patient decides if check now or schedule a day
         //if check now--> check with regular doctor,patient describes problem
         //doctor decides if instant treatment, if yes-->treat, no-->make an appointment
-
-
         //create patient
         Patient patient = new Patient("Alberto", "Fernandez", "male", 85);
         //add patient to patientList
         hospital.registerPatient(patient);
-
         //does the patient want to make a scheduled appointment?
         //if no, then -->
         boolean scheduledDate = false;
@@ -36,11 +31,14 @@ public class Main {
             Clinician clinic = new Clinician("Camila", "Perez");
             logger.info(clinic.prescription());
             //patient describes the problem, problem can be: mental,physical,heart or skin, pain level: 1-10
-            Injury patientInjury = new Injury("physical", 5);
+            Injury patientInjury = new Injury("physical", 7);
             patient.injury = patientInjury;
 
-            if (patient.injury.painLevel > 6 && patient.injury.annoyance == "heart") {
-                Treatment t = new Treatment(patient.injury.annoyance, patient);
+            if (patient.injury.painLevel > 6) {
+                hospital.treatment(patientInjury.annoyance, patient);
+                System.out.println("--------------");
+                System.out.println(patient.assignedDoctor);
+                System.out.println("--------------");
                 logger.info("you have been healed, you need to pay the hospital a total of: " + patient.patientBalance);
             } else {
                 logger.info("your treatment can wait, make an appointment");
@@ -50,45 +48,29 @@ public class Main {
         }
         if (scheduledDate) {
             Date d = new Date(13, 8, 2022);
+            hospital.registerDate(d);
             Appointment appointment = new Appointment(patient, d);
-            logger.info(patient.getName() + " appointment is on day: " + d.day + "/" + d.month);
             hospital.registerAppointment(appointment);
+            logger.info(patient.getName() + " appointment is on day: " + d.day + "/" + d.month);
 
             if (patient.age < 12) {
                 logger.info("Your assigned doctor will be a Pediatrician");
             } else logger.info("Your assigned doctor will be assigned on the date's day");
         }
+        /*
         //generate patients and add them to linkedList
-        LinkedList<Patient> patientLinkedList = new LinkedList<>();
         Patient patient4 = new Patient("Jorge", "Lanata", "male", 65);
         Patient patient5 = new Patient("Patricia", "Bulrich", "female", 60);
         Patient patient6 = new Patient("Victor", "Warcry", "male", 52);
-        patientLinkedList.add(patient4);
-        patientLinkedList.add(patient5);
-        patientLinkedList.add(patient6);
-        logger.info("patients on: patientLinkedList= ");
-        patientLinkedList.printAllValues(patientLinkedList.root);
-        logger.info("patientLinkedList size: " + patientLinkedList.size(patientLinkedList.root));
+        hospital.registerPatient(patient4);
+        hospital.registerPatient(patient5);
+        hospital.registerPatient(patient6);
+        logger.info("patients on patientLinkedList: ");
+        hospital.printPatientList();
 
-
-
-        /*
-        //generate appointments
-        Patient patient1 = new Patient("Nicki", "Nicole", "female", 20);
-        Patient patient2 = new Patient("Biza", "Rap", "male", 25);
-        Patient patient3 = new Patient("Donald", "Trump", "male", 70);
-        Date d1 = new Date(15, 8, 2022);
-        Date d2 = new Date(16, 8, 2022);
-        Date d3 = new Date(17, 8, 2022);
-        Appointment a1 = new Appointment(patient1, d1);
-        Appointment a2 = new Appointment(patient2, d2);
-        Appointment a3 = new Appointment(patient3, d3);
-        hospital.registerAppointment(a1);
-        hospital.registerAppointment(a2);
-        hospital.registerAppointment(a3);
-        hospital.printAppointments();
-        */
-
+         */
+        Human doc = (Human) hospital.recieveDoctor("Cardiologist");
+        System.out.println(doc);
 
     }
 

@@ -10,6 +10,7 @@ public class Injury extends InvalidPainLevelException {
     public String annoyance;
     public int painLevel;
 
+
     public Injury(String annoyance, int painLevel) {
         try {
             if (painLevel > 10 || painLevel < 1) {

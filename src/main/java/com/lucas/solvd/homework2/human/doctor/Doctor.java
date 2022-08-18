@@ -4,7 +4,8 @@ import com.lucas.solvd.homework2.human.Human;
 
 public class Doctor extends Human {
 
-    private int doctorID;
+    private int doctorID = 0;
+    public static int doctorAmount = 1;
     private int salary;
 
     //Constructors
@@ -12,9 +13,10 @@ public class Doctor extends Human {
     }
 
     public Doctor(String name, String lastName, int salary) {
-        super(name, lastName);
+        super(name, lastName, "male", 100);
         this.salary = salary;
-        this.doctorID = hashCode();
+        this.doctorID = doctorAmount;
+        doctorAmount++;
     }
 
 
@@ -27,17 +29,11 @@ public class Doctor extends Human {
         return this.salary;
     }
 
-    //override
-    @Override
-    public void typeOfHuman() {
-        System.out.println("My type of human is Doctor");
-    }
-
     @Override
     public String toString() {
         return "[Doctor Class: " + getClass().getSimpleName() +
                 ", Human Class = Name : " + getName() +
-                ", Last-name: " + getLastName() + "]";
+                ", Last-name: " + getLastname() + "]";
     }
 
 

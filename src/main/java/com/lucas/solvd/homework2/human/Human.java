@@ -1,64 +1,92 @@
 package com.lucas.solvd.homework2.human;
 
+import com.lucas.solvd.homework2.exceptions.InvalidAgeException;
+import com.lucas.solvd.homework2.exceptions.InvalidGenderException;
 import com.lucas.solvd.homework2.exceptions.InvalidNameException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public abstract class Human {
-    private String name = "Unknown";
-    private String lastName = "Unknown";
+public class Human {
+    private static Logger logger = LogManager.getLogger(Human.class);
+    public String name;
+    public String lastname;
+    public int age;
+    public String gender;
+    public int humanID = 0;
+    public static int humanIDStatic = 1;
 
-
-    //constructors
     public Human() {
     }
 
-    public Human(String name, String lastName) {
+    public Human(String name, String lastName, String gender, int age) {
         try {
             if (name == "" || lastName == "") {
                 throw new InvalidNameException("Name should have at least 1 character");
             }
-        } catch (Exception e) {
-
+            if (age < 1) {
+                throw new InvalidAgeException("Age must be greater than 1");
+            }
+            if (gender != "male" && gender != "female") {
+                throw new InvalidGenderException("Gender must be 'male' or 'female' ");
+            }
+        } catch (InvalidGenderException | InvalidAgeException | InvalidNameException e) {
+            logger.error(e);
         }
+
         this.name = name;
-        this.lastName = lastName;
+        this.lastname = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.humanID = humanIDStatic;
+        humanIDStatic++;
     }
 
-    //setters
+    public String getName() {
+        return name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    //getters
-    public String getName() {
-        return this.name;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    //abstract method
-    public abstract void typeOfHuman();
-
-    //overrides
     @Override
     public int hashCode() {
-        return name.hashCode() + lastName.hashCode() + +(short) Math.random() * 31000;
+        return name.hashCode() + lastname.hashCode() + +(int) Math.random() * 32000;
     }
 
     @Override
     public String toString() {
-        return "Human Class = [Name : " + name + ", Last-name: " + lastName + "]";
+        return "Human Class = [Name : " + name + ", Last-name: " + lastname + "]";
     }
 
     @Override
     public boolean equals(Object o) {
         Human h = (Human) o;
-        if (h.name == this.name && h.lastName == this.lastName && h.hashCode() == this.hashCode()) {
+        if (h.name == this.name && h.lastname == this.lastname && h.hashCode() == this.hashCode()) {
             return true;
         } else {
             return false;

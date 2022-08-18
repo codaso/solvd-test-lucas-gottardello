@@ -7,7 +7,6 @@ import com.lucas.solvd.homework2.human.doctor.IDoctor;
 public final class Traumatologist extends Doctor implements IDoctor {
 
 
-    //constructors
     public Traumatologist() {
         super();
     }

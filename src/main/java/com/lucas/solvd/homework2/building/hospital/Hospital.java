@@ -87,15 +87,14 @@ public class Hospital extends Building implements IHospital {
 
     public void treatment(String annoyance, Patient patient) {
         Treatment treatment = new Treatment(annoyance, patient);
+        treatment = null;
     }
 
     public Object recieveDoctor(String doctorSpecialty) {
         Object obj = (Doctor) doctorList.retrieveDoctor(doctorSpecialty);
         return obj;
     }
-
-
-    //Override
+    
     @Override
     public void typeOfBuilding() {
         logger.info("My time of building is Hospital");

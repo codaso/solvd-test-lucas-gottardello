@@ -6,7 +6,6 @@ import com.lucas.solvd.homework2.human.doctor.IDoctor;
 
 public final class Clinician extends Doctor implements IDoctor {
 
-    //constructors
     public Clinician() {
         super();
     }

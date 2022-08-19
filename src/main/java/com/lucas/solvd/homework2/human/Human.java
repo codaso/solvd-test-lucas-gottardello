@@ -12,8 +12,6 @@ public class Human {
     public String lastname;
     public int age;
     public String gender;
-    public int humanID = 0;
-    public static int humanIDStatic = 1;
 
     public Human() {
     }
@@ -37,8 +35,6 @@ public class Human {
         this.lastname = lastName;
         this.gender = gender;
         this.age = age;
-        this.humanID = humanIDStatic;
-        humanIDStatic++;
     }
 
     public String getName() {

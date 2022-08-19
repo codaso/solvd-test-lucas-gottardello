@@ -2,6 +2,7 @@ package com.lucas.solvd.homework2;
 
 import com.lucas.solvd.homework2.human.doctor.specialty.Clinician;
 import com.lucas.solvd.homework2.human.doctor.specialty.Pediatrician;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -125,25 +126,16 @@ public class LinkedListHuman<Human> {
     public Object retrieveDoctor(String doctorString) {
         if (root == null) {
             return null;
-        } else if (root.human.getClass().getSimpleName() == doctorString) {
+        } else if (StringUtils.equals(root.human.getClass().getSimpleName(), doctorString)) {
             System.out.println("root.human was equal to doctorstring");
             return root.human;
         }
-        System.out.println(root.human.getClass().getSimpleName());
-        System.out.println(doctorString);
-        String b = root.human.getClass().getSimpleName();
-
-        boolean a = (b == doctorString);
-        System.out.println(a);
-
-
         return this._retrieveDoctor(doctorString, this.root.next);
     }
 
     Object _retrieveDoctor(String doctorString, NodeHuman curr) {
-        System.out.println("Entering _retrieveDoctor");
         if (curr == null) return null;
-        if (curr.human.getClass().getSimpleName() == doctorString) return curr.human;
+        if (StringUtils.equals(curr.human.getClass().getSimpleName(), doctorString)) return curr.human;
         return this._retrieveDoctor(doctorString, curr.next);
     }
 
@@ -161,33 +153,30 @@ public class LinkedListHuman<Human> {
         com.lucas.solvd.homework2.human.Human belen = new com.lucas.solvd.homework2.human.Human("Belen",
                 "jghjhgj", "female", 22);
 
-
+        System.out.println("-----------");
         ll.addHuman(lucas);
         ll.addHuman(juan);
         ll.addHuman(lucia);
         ll.addHuman(belen);
-
-        System.out.println("-----------");
         ll.printHumans(ll.root);
+        System.out.println("-----------");
         com.lucas.solvd.homework2.human.Human pedro = (com.lucas.solvd.homework2.human.Human) ll.retrieveObject(lucas);
         ll.addHuman(pedro);
-
-        //com.lucas.solvd.homework2.human.Human mariana = (com.lucas.solvd.homework2.human.Human) ll.retrieveDoctor("Human");
-        //System.out.println(mariana);
         ll.deleteHuman(belen);
+        ll.printHumans(ll.root);
+
         System.out.println("-----------");
-
-
         LinkedListHuman doctorli = new LinkedListHuman();
         Clinician cl = new Clinician("laura", "perez");
         Pediatrician pe = new Pediatrician("jorge", "jorgito");
         doctorli.addHuman(cl);
         doctorli.addHuman(pe);
-        //doctorli.printHumans(doctorli.root);
-        //System.out.println(cl.getClass().getSimpleName());
+        doctorli.printHumans(doctorli.root);
 
-        //com.lucas.solvd.homework2.human.Human h = (com.lucas.solvd.homework2.human.Human) doctorli.retrieveDoctor("Clinician");
-        //System.out.println(h.getClass().getSimpleName());
+        com.lucas.solvd.homework2.human.Human h = (com.lucas.solvd.homework2.human.Human) doctorli.retrieveDoctor("Clinician");
+        System.out.println(h.getClass().getSimpleName());
+        Object doc = doctorli.retrieveDoctor("Pediatrician");
+        System.out.println(doc);
 
 
     }

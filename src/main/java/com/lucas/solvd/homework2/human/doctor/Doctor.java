@@ -1,16 +1,11 @@
 package com.lucas.solvd.homework2.human.doctor;
 
-import com.lucas.solvd.homework2.human.Human;
-
-public class Doctor extends Human {
+public class Doctor {
     private int salary;
+    private String prescription;
+    private String availableDays;
 
     public Doctor() {
-    }
-
-    public Doctor(String name, String lastName, int salary) {
-        super(name, lastName, "male", 100);
-        this.salary = salary;
     }
 
 
@@ -18,11 +13,30 @@ public class Doctor extends Human {
         return this.salary;
     }
 
+    public String getPrescription() {
+        return this.prescription;
+    }
+
+    public String getAvailableDays() {
+        return this.availableDays;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
+
+    public void setAvailableDays(String availableDays) {
+        this.availableDays = availableDays;
+    }
+
     @Override
     public String toString() {
-        return "[Doctor Class: " + getClass().getSimpleName() +
-                ", Human Class = Name : " + getName() +
-                ", Last-name: " + getLastname() + "]";
+        return "[Doctor specialty: " + getClass().getSimpleName() +
+                "]";
     }
 
 

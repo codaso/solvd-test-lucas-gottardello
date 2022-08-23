@@ -5,4 +5,6 @@ public interface IDoctor {
 
     String prescription();
 
+    String availableDays();
+
 }

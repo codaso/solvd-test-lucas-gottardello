@@ -6,6 +6,8 @@ import com.lucas.solvd.homework2.exceptions.InvalidNameException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Function;
+
 public class Human {
     private static Logger logger = LogManager.getLogger(Human.class);
     public String name;
@@ -18,13 +20,13 @@ public class Human {
 
     public Human(String name, String lastName, String gender, int age) {
         try {
-            if (name == "" || lastName == "") {
+            if (invalidName.apply(name) || invalidName.apply(lastName)) {
                 throw new InvalidNameException("Name should have at least 1 character");
             }
-            if (age < 1) {
+            if (invalidAge.apply(age)) {
                 throw new InvalidAgeException("Age must be greater than 1");
             }
-            if (gender != "male" && gender != "female") {
+            if (!validGender.apply(gender)) {
                 throw new InvalidGenderException("Gender must be 'male' or 'female' ");
             }
         } catch (InvalidGenderException | InvalidAgeException | InvalidNameException e) {
@@ -36,6 +38,10 @@ public class Human {
         this.gender = gender;
         this.age = age;
     }
+
+    Function<String, Boolean> invalidName = (name) -> (name.equals(""));
+    Function<Integer, Boolean> invalidAge = (age) -> (age < 1);
+    Function<String, Boolean> validGender = (gender) -> (gender.equals("male") || gender.equals("female"));
 
     public String getName() {
         return name;
@@ -76,7 +82,7 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Human Class = [Name : " + name + ", Last-name: " + lastname + "]";
+        return "Human Class = [Name : " + name + ", Lastname: " + lastname + "]";
     }
 
     @Override

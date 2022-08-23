@@ -3,9 +3,11 @@ package com.lucas.solvd.homework2.building.hospital;
 import com.lucas.solvd.homework2.Date;
 import com.lucas.solvd.homework2.LinkedListHuman;
 import com.lucas.solvd.homework2.building.Building;
-import com.lucas.solvd.homework2.human.Patient;
+import com.lucas.solvd.homework2.human.Human;
 import com.lucas.solvd.homework2.human.doctor.Doctor;
+import com.lucas.solvd.homework2.human.doctor.Doctors;
 import com.lucas.solvd.homework2.human.doctor.specialty.*;
+import com.lucas.solvd.homework2.human.patient.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,57 +26,93 @@ public class Hospital extends Building implements IHospital {
     }
 
     public static LinkedListHuman<Patient> patientList = new LinkedListHuman<>();
-    public static LinkedListHuman<Doctor> doctorList = new LinkedListHuman<>();
+
+    public static Doctor[] doctorArr = new Doctor[6];
     public static ArrayList<Appointment> appointmentList = new ArrayList<>();
     public static ArrayList<Date> dateList = new ArrayList<>();
 
 
     public void loadDoctors() {
-        Cardiologist cardiologist = new Cardiologist("Cardio", "Logist");
-        Psychologist psychologist = new Psychologist("Psycho", "Logist");
-        Clinician clinician = new Clinician("Clinic", "Ian");
-        Dermatologist dermatologist = new Dermatologist("Derma", "Tologist");
-        Pediatrician pediatrician = new Pediatrician("Pedia", "Trician");
-        Traumatologist traumatologist = new Traumatologist("Trauma", "Tologist");
-        doctorList.addHuman(cardiologist);
-        doctorList.addHuman(psychologist);
-        doctorList.addHuman(clinician);
-        doctorList.addHuman(dermatologist);
-        doctorList.addHuman(pediatrician);
-        doctorList.addHuman(traumatologist);
+        Cardiologist cardiologist = new Cardiologist();
+        Psychologist psychologist = new Psychologist();
+        Clinician clinician = new Clinician();
+        Dermatologist dermatologist = new Dermatologist();
+        Pediatrician pediatrician = new Pediatrician();
+        Traumatologist traumatologist = new Traumatologist();
+        doctorArr[0] = cardiologist;
+        doctorArr[1] = clinician;
+        doctorArr[2] = dermatologist;
+        doctorArr[3] = pediatrician;
+        doctorArr[4] = psychologist;
+        doctorArr[5] = traumatologist;
     }
 
 
-    public void registerDoctor(Doctor doctor) {
-        doctorList.addHuman(doctor);
-    }
-
-    public void registerPatient(Patient patient) {
+    public void addPatient(Patient patient) {
         patientList.addHuman(patient);
     }
 
-    public void printDoctorList() {
-        doctorList.printHumans(doctorList.root);
-    }
 
     public void printPatientList() {
         patientList.printHumans(patientList.root);
     }
 
+    public void printDoctorsMainFocus(Doctors[] doctorsEnum) {
+        for (int i = 0; i < doctorsEnum.length; i++) {
+            logger.info(("*") + " ) " + doctorsEnum[i].mainFocus());
+        }
+    }
+
+    public int getDocCost(int i) {
+        return doctorArr[i].getSalary();
+    }
+
+    public String getDocPrescription(int i) {
+        return doctorArr[i].getPrescription();
+    }
+
+    public String getAvailableDays(int i) {
+        return doctorArr[i].getAvailableDays();
+    }
 
     int getPatientListSize() {
         return patientList.size();
     }
 
-    int getDoctorListSize() {
-        return doctorList.size();
+
+    public Date searchFreeDate() {
+        int currentMonth = getCurrentMonth();
+        Date d = new Date(1, currentMonth, 2022);
+        while (d.month < 13) {
+            if (dateList.contains(d)) {
+                d.day++;
+            }
+            if (d.day == 31) {
+                d.day = 1;
+                d.month++;
+            } else if (!dateList.contains(d)) {
+
+                logger.info(" [Your date with the doctor will be on day: " + d.day + ", month: " + d.month + ",year: " + d.year + "]");
+                return d;
+            }
+            if (d.month == 12) {
+                logger.info("We do not have an available day for you, come back next year");
+                return null;
+            }
+        }
+        return null;
+    }
+
+    int getCurrentMonth() {
+        return 8;
     }
 
     public void registerDate(Date date) {
         dateList.add(date);
     }
 
-    public void registerAppointment(Appointment appointment) {
+    public void registerAppointment(Patient patient, Date date) {
+        Appointment appointment = new Appointment(patient, date);
         appointmentList.add(appointment);
     }
 
@@ -85,16 +123,21 @@ public class Hospital extends Building implements IHospital {
         }
     }
 
-    public void treatment(String annoyance, Patient patient) {
-        Treatment treatment = new Treatment(annoyance, patient);
-        treatment = null;
+    public int treatment(String annoyance, Patient patient) {
+        Treatment trea = new Treatment();
+        return trea.treat(annoyance, patient);
+        
+
     }
 
-    public Object recieveDoctor(String doctorSpecialty) {
-        Object obj = (Doctor) doctorList.retrieveDoctor(doctorSpecialty);
-        return obj;
+    public void deletePatient(Human human) {
+        patientList.deleteNode(human);
     }
-    
+
+    public boolean choice(String str, Choice yesOrNo) {
+        return yesOrNo.yesOrNo(str);
+    }
+
     @Override
     public void typeOfBuilding() {
         logger.info("My time of building is Hospital");

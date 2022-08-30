@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Function;
 
 public class Human {
-    private static Logger logger = LogManager.getLogger(Human.class);
+    private Logger logger = LogManager.getLogger(Human.class);
     public String name;
     public String lastname;
     public int age;
@@ -31,8 +31,8 @@ public class Human {
             }
         } catch (InvalidGenderException | InvalidAgeException | InvalidNameException e) {
             logger.error(e);
+            System.exit(-1);
         }
-
         this.name = name;
         this.lastname = lastName;
         this.gender = gender;

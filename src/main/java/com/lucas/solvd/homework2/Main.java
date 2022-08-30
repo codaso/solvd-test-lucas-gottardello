@@ -1,7 +1,8 @@
 package com.lucas.solvd.homework2;
 
+import com.lucas.solvd.homework2.building.hospital.GeneratePatients;
 import com.lucas.solvd.homework2.building.hospital.Hospital;
-import com.lucas.solvd.homework2.human.doctor.Doctors;
+import com.lucas.solvd.homework2.building.hospital.OffMenu;
 import com.lucas.solvd.homework2.human.doctor.specialty.Clinician;
 import com.lucas.solvd.homework2.human.patient.Injury;
 import com.lucas.solvd.homework2.human.patient.Patient;
@@ -18,29 +19,13 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
         Scanner userInput2 = new Scanner(System.in);
         Hospital hospital = new Hospital("Hospital Dr. Pedro Solanet");
-        Doctors[] doctorsEnum = Doctors.values();
         hospital.loadDoctors();
-        logger.info(hospital.getDocPrescription(0));
-        logger.info(hospital.getDocPrescription(1));
-        logger.info(hospital.getDocPrescription(2));
-        logger.info(hospital.getDocPrescription(3));
-        logger.info(hospital.getDocPrescription(4));
-        logger.info(hospital.getDocPrescription(5));
-        //---------------------------------------------
-        //generate patients and add them to linkedListHuman
-        /*
-        Patient patient4 = new Patient("Jorge", "Lanata", "male", 65);
-        Patient patient5 = new Patient("Patricia", "Bulrich", "female", 60);
-        Patient patient6 = new Patient("Donald", "Trump", "male", 52);
-        hospital.addPatient(patient4);
-        hospital.addPatient(patient5);
-        hospital.addPatient(patient6);
-        logger.info("List of patients: ");
-        logger.info("-------------------");
-        hospital.printPatientList();
-        logger.info("-------------------");
+        GeneratePatients generatePatients = new GeneratePatients();
+        generatePatients.generatePatients();
+        OffMenu offMenu = new OffMenu();
+        offMenu.Off_Menu();
 
-         */
+
         //----------------------------------------------
         //create patient, patient decides if check now or schedule a day
         //if check now--> check with regular doctor,patient describes problem
@@ -57,7 +42,7 @@ public class Main {
         Patient patient = new Patient(patientName, patientLastname, patientGender, patientAge);
         hospital.addPatient(patient);
 
-        logger.info("do you want to make a scheduled appointment? y/n");
+        logger.info("do you want to make a scheduled appointment?  \ny/n");
         boolean scheduledDate = false;
         String input = userInput2.nextLine();
         if (hospital.choice(input, (cho) -> cho.equals("y"))) scheduledDate = true;
@@ -73,7 +58,7 @@ public class Main {
             logger.info(clinic.prescription());
             logger.info("What type of pain or trouble do you have?");
             logger.info("valid options: ");
-            hospital.printDoctorsMainFocus(doctorsEnum);
+            hospital.printDoctorsMainFocus();
             String trouble = userInput2.nextLine();
             logger.info("What level of pain from 1 to 10 would you give?");
             int painLevel = userInput.nextInt();
@@ -97,9 +82,8 @@ public class Main {
                 logger.info("your treatment can wait, make an appointment");
                 logger.info("Your assigned doctor will be a: ");
                 logger.info(patient.assignedDoctor);
-                logger.info("Doctor's available days are: ");
-                logger.info(hospital.getAvailableDays(docPos));
-                scheduledDate = true;
+                logger.info("Doctor's available day(s) are: ");
+                logger.info(hospital.getDocAvailableDays(docPos));
             }
 
         }
@@ -110,8 +94,9 @@ public class Main {
 
         }
 
+
     }
 
-
 }
+
 

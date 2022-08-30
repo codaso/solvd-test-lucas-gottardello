@@ -7,10 +7,15 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Function;
 
 public class Injury extends InvalidPainLevelException {
-    private static Logger logger = LogManager.getLogger(Injury.class);
+    private Logger logger = LogManager.getLogger(Injury.class);
 
     public String annoyance;
     public int painLevel;
+
+    public Injury() {
+        this.annoyance = "undefined";
+        this.painLevel = 0;
+    }
 
 
     public Injury(String annoyance, int painLevel) {
@@ -26,4 +31,14 @@ public class Injury extends InvalidPainLevelException {
     }
 
     Function<Integer, Boolean> invalidPain = (t) -> (t > 10 || t < 1);
+
+    public int getPainLevel() {
+        return this.painLevel;
+    }
+
+    public String getAnnoyance() {
+        return this.annoyance;
+    }
+
+
 }

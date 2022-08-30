@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class LinkedListHuman<Human> {
 
-    private static Logger logger = LogManager.getLogger(LinkedListHuman.class);
+    private Logger logger = LogManager.getLogger(LinkedListHuman.class);
     public NodeHuman<Human> root;
 
     public LinkedListHuman() {
@@ -82,7 +82,8 @@ public class LinkedListHuman<Human> {
     public void printHumans(NodeHuman list) {
         if (list != null) {
             printHumans(list.next);
-            System.out.println(list.human);
+            System.out.println("Human: " + list.human);
+            System.out.println("Human index: " + list.getIndex());
 
         }
     }

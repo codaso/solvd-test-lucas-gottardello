@@ -1,7 +1,6 @@
 package com.lucas.solvd.homework2.building.hospital;
 
 import com.lucas.solvd.homework2.Date;
-import com.lucas.solvd.homework2.LinkedListHuman;
 import com.lucas.solvd.homework2.building.Building;
 import com.lucas.solvd.homework2.human.Human;
 import com.lucas.solvd.homework2.human.doctor.Doctor;
@@ -11,7 +10,8 @@ import com.lucas.solvd.homework2.human.patient.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Hospital extends Building implements IHospital {
     Logger logger = LogManager.getLogger(Hospital.class);
@@ -25,8 +25,8 @@ public class Hospital extends Building implements IHospital {
         super(hospitalName);
     }
 
-    public static LinkedListHuman<Patient> patientList = new LinkedListHuman<>();
-
+    public static LinkedList<Patient> patientList = new LinkedList<>();
+    Doctors[] doctorsEnum = Doctors.values();
     public static Doctor[] doctorArr = new Doctor[6];
     public static ArrayList<Appointment> appointmentList = new ArrayList<>();
     public static ArrayList<Date> dateList = new ArrayList<>();
@@ -49,15 +49,19 @@ public class Hospital extends Building implements IHospital {
 
 
     public void addPatient(Patient patient) {
-        patientList.addHuman(patient);
+        patientList.add(patient);
     }
 
 
     public void printPatientList() {
-        patientList.printHumans(patientList.root);
+        patientList.stream().forEach(System.out::println);
     }
 
-    public void printDoctorsMainFocus(Doctors[] doctorsEnum) {
+    public void printList(List list) {
+        list.stream().forEach(System.out::println);
+    }
+
+    public void printDoctorsMainFocus() {
         for (int i = 0; i < doctorsEnum.length; i++) {
             logger.info(("*") + " ) " + doctorsEnum[i].mainFocus());
         }
@@ -71,14 +75,22 @@ public class Hospital extends Building implements IHospital {
         return doctorArr[i].getPrescription();
     }
 
-    public String getAvailableDays(int i) {
+    public void docPrescriptions() {
+        logger.info(getDocPrescription(0));
+        logger.info(getDocPrescription(1));
+        logger.info(getDocPrescription(2));
+        logger.info(getDocPrescription(3));
+        logger.info(getDocPrescription(4));
+        logger.info(getDocPrescription(5));
+    }
+
+    public String getDocAvailableDays(int i) {
         return doctorArr[i].getAvailableDays();
     }
 
-    int getPatientListSize() {
-        return patientList.size();
+    public void docSpecialties() {
+        Arrays.stream(doctorsEnum).forEach(System.out::println);
     }
-
 
     public Date searchFreeDate() {
         int currentMonth = getCurrentMonth();
@@ -126,13 +138,41 @@ public class Hospital extends Building implements IHospital {
     public int treatment(String annoyance, Patient patient) {
         Treatment trea = new Treatment();
         return trea.treat(annoyance, patient);
-        
 
     }
 
     public void deletePatient(Human human) {
-        patientList.deleteNode(human);
+        patientList.remove(human);
     }
+
+
+    //streams
+    public List<Patient> filterPatientsByAge(int age) {
+        return patientList.stream().filter(x -> x.age >= age).collect(Collectors.toList());
+    }
+
+    public List<String> patientListByAssignedDoctor() {
+        //question: trying to enter patient.injury.painlevel -->error
+        //but getting into patient.age works
+        //so i can't get into patient->object(injury)->painlevel
+        // can't return x.getInjury() ----> returns exception: .Hospital.lambda$patientListFilteredByPain$1
+        return patientList.stream().map(x -> x.assignedDoctor).collect(Collectors.toList());
+
+    }
+
+    public void printPatientsByName() {
+        patientList.stream().sorted((x, y) -> y.compareName(x)).forEach(System.out::println);
+    }
+
+    public long countPatients() {
+        return patientList.stream().count();
+    }
+
+
+    public Optional<Patient> findFirstPatient() {
+        return patientList.stream().findFirst();
+    }
+
 
     public boolean choice(String str, Choice yesOrNo) {
         return yesOrNo.yesOrNo(str);
@@ -142,6 +182,8 @@ public class Hospital extends Building implements IHospital {
     public void typeOfBuilding() {
         logger.info("My time of building is Hospital");
     }
+
+    //streams
 
 
 }

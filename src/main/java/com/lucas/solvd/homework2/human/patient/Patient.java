@@ -7,10 +7,10 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Function;
 
 public class Patient extends Human {
-    Logger logger = LogManager.getLogger(Patient.class);
+    private Logger logger = LogManager.getLogger(Patient.class);
     public Injury injury;
     public int patientBalance;
-    public String assignedDoctor;
+    public String assignedDoctor = "undefined";
 
     public Patient() {
         super();
@@ -44,6 +44,14 @@ public class Patient extends Human {
 
     public Injury getInjury() {
         return this.injury;
+    }
+
+    public int getPainLevel() {
+        return this.injury.painLevel;
+    }
+
+    public int compareName(Patient pat) {
+        return this.name.compareToIgnoreCase(pat.name);
     }
 
 

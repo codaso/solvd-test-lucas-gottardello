@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class Treatment extends InvalidAnnoyanceException {
 
-    private static Logger logger = LogManager.getLogger(Treatment.class);
+    private Logger logger = LogManager.getLogger(Treatment.class);
     public Doctors[] doctorsEnum = Doctors.values();
 
 
@@ -21,6 +21,7 @@ public class Treatment extends InvalidAnnoyanceException {
             }
         } catch (Exception e) {
             logger.info("Exception ocurred: " + e);
+            System.exit(-1);
         }
         if (annoyance.equals("heart")) {
             p.assignedDoctor = doctorsEnum[0].name();

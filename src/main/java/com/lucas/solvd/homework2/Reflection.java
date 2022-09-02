@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Reflection {
-    private static Logger logger = LogManager.getLogger(Reflection.class);
+    private Logger logger = LogManager.getLogger(Reflection.class);
     static final int max = 127;
 
 

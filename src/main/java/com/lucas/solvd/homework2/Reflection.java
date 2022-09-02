@@ -13,6 +13,9 @@ public class Reflection {
 
     public Field[] getFields(Object obj) {
         Field[] objField = obj.getClass().getDeclaredFields();
+        if (objField.length > max) {
+            logger.info("maximum number of fields permitted in Field[] is = 128");
+        }
         return objField;
     }
 
@@ -75,6 +78,7 @@ public class Reflection {
     }
 
     public static void main(String[] args) {
+
         /*
         Reflection reflection = new Reflection();
         Human x = new Human();
@@ -83,5 +87,7 @@ public class Reflection {
         FieldString[] field_and_names = reflection.arrayOfField_String(x);
 
          */
+
+
     }
 }

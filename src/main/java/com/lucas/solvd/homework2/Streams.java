@@ -1,18 +1,13 @@
 package com.lucas.solvd.homework2;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.regex.Pattern;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
 public class Streams {
+    public int a = 1;
+    private int b = 2;
+
+    public void streamMethod() {
+        int c = a + b;
+    }
+    /*
     Collection<String> collection = Arrays.asList("a", "b", "c");
     Stream<String> streamOfCollection = collection.stream();
 
@@ -69,4 +64,11 @@ public class Streams {
         Stream<String> streamWithCharset =
                 Files.lines(path, Charset.forName("UTF-8"));
     }
+
+    @Override
+    public String toString() {
+        return "Streams";
+    }
+
+     */
 }

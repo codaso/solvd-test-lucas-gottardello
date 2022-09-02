@@ -33,8 +33,9 @@ public class Doctor {
         this.availableDays = availableDays;
     }
 
-    private void iAmTheDoctor() {
+    private boolean iAmTheDoctor() {
         System.out.println("I am the Doctor");
+        return true;
     }
 
 

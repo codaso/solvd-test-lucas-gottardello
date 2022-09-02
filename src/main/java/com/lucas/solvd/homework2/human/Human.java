@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Function;
 
 public class Human {
+    Function<Human, Human> human = (human) -> (human);
     private Logger logger = LogManager.getLogger(Human.class);
     public String name;
     public String lastname;
@@ -38,6 +39,7 @@ public class Human {
         this.gender = gender;
         this.age = age;
     }
+
 
     Function<String, Boolean> invalidName = (name) -> (name.equals(""));
     Function<Integer, Boolean> invalidAge = (age) -> (age < 1);
@@ -82,7 +84,7 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Human Class = [Name : " + name + ", Lastname: " + lastname + "]";
+        return "Human";
     }
 
     @Override

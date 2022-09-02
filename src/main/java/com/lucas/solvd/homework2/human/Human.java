@@ -11,10 +11,10 @@ import java.util.function.Function;
 public class Human {
     Function<Human, Human> human = (human) -> (human);
     private Logger logger = LogManager.getLogger(Human.class);
-    public String name;
-    public String lastname;
-    public int age;
-    public String gender;
+    public String name = "";
+    public String lastname = "";
+    public int age = 0;
+    public String gender = "undefined";
 
     public Human() {
     }
@@ -33,11 +33,13 @@ public class Human {
         } catch (InvalidGenderException | InvalidAgeException | InvalidNameException e) {
             logger.error(e);
             System.exit(-1);
+        } finally {
+            this.name = name;
+            this.lastname = lastName;
+            this.gender = gender;
+            this.age = age;
         }
-        this.name = name;
-        this.lastname = lastName;
-        this.gender = gender;
-        this.age = age;
+
     }
 
 

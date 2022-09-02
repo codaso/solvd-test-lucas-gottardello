@@ -31,6 +31,7 @@ public class Main {
         //if check now--> check with regular doctor,patient describes problem
         //doctor decides if instant treatment, if yes-->treat, no-->make an appointment
         //create patient
+        logger.info("MAIN PROGRAM");
         logger.info("Enter your name");
         String patientName = userInput.nextLine();
         logger.info("Enter your last-name");

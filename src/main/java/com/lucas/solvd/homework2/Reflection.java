@@ -1,36 +1,24 @@
 package com.lucas.solvd.homework2;
 
-import com.lucas.solvd.homework2.human.Human;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Reflection {
+    private static Logger logger = LogManager.getLogger(Reflection.class);
+    static final int max = 127;
 
-
-    public void getMethodNames() throws ClassNotFoundException {
-        //returns array of Method for a given String
-        Class<?> aClass = Class.forName("com.lucas.solvd.homework2.Reflection");
-    }
 
     public Field[] getFields(Object obj) {
         Field[] objField = obj.getClass().getDeclaredFields();
         return objField;
     }
 
-
-    public Method searchInMthdArr(Method[] arr, String str) {
-        //returns pointer to a Method element in the given array
-        for (int i = 0; i < arr.length; i++) {
-            if (str.equals(arr[i])) return arr[i];
-        }
-        return null;
-    }
-
     public String[] getFieldNames(Field[] aux) {
         //getFieldNames ->returns an array String[], with size Field[] aux.length, of String elements:
         int n = 0;
-        final int max = 127;
         String[] strArr = new String[n];
         Field field = null;
         //get size of input Field[] array, save it to n(n ∈ N ,N = {0,1,2,...,127});
@@ -41,7 +29,6 @@ public class Reflection {
                 i = max;
             }
         }
-        System.out.println(n);
         //create array of size n, return array of field.getName();
         String[] strArr2 = new String[n];
         for (int j = 0; j < n; j++) {
@@ -55,40 +42,46 @@ public class Reflection {
         return strArr2;
     }
 
-    public Object humanObj(Field[] fields, String str) {
-        for (Field field : fields) {
-            if (field.getName().equals("Human")) {
-                System.out.println("its equal");
-                return field;
-            }
-
+    public FieldString[] getFieldStringArr(Field[] field_arr, String[] str_arr) {
+        //returns an array of FieldString<Field,String>
+        FieldString[] fieldStringArr = new FieldString[str_arr.length];
+        for (int k = 0; k < str_arr.length; k++) {
+            FieldString fieldString = new FieldString();
+            fieldString.field = field_arr[k];
+            fieldString.string = str_arr[k];
+            fieldStringArr[k] = fieldString;
         }
-        return null;
+        return fieldStringArr;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public FieldString[] arrayOfField_String(Object x) {
+        Field[] field_arr = getFields(x);
+        String[] str_arr = getFieldNames(field_arr);
+        return getFieldStringArr(field_arr, str_arr);
+    }
 
+    public Method[] getMethods(Object obj) {
+        Method[] objMethods = obj.getClass().getMethods();
+        return objMethods;
+    }
+
+    public void printMethodReturnType(Object x) {
+        Method[] methods = getMethods(x);
+        for (Method method : methods) {
+            logger.info("Method name: " + method);
+            logger.info("Return type: " + method.getReturnType());
+
+        }
+    }
+
+    public static void main(String[] args) {
+        /*
         Reflection reflection = new Reflection();
         Human x = new Human();
+        Field[] fields = reflection.getFields(x);
+        String[] names = reflection.getFieldNames(fields);
+        FieldString[] field_and_names = reflection.arrayOfField_String(x);
 
-        //Doctor x = new Doctor();
-        Field[] aux = reflection.getFields(x);
-
-
-        for (Field field : aux) {
-            System.out.println(field);
-        }
-        String[] str_arr = reflection.getFieldNames(aux);
-        for (String str : str_arr) {
-            System.out.println(str);
-        }
-
-
-        Object o = reflection.humanObj(aux, x.toString());
-        System.out.println(o);
-
-
-        //Method met = reflection.searchInMthdArr(arr, "Doctor");
-        //System.out.println(met.getName());
+         */
     }
 }

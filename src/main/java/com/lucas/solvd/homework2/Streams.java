@@ -1,6 +1,7 @@
 package com.lucas.solvd.homework2;
 
 public class Streams {
+    //information class
     public int a = 1;
     private int b = 2;
 

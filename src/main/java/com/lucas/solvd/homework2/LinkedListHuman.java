@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LinkedListHuman<Human> {
+    //LinkedListHuman: is not used in Homework2 hierarchy
 
     private Logger logger = LogManager.getLogger(LinkedListHuman.class);
     public NodeHuman<Human> root;
@@ -147,6 +148,9 @@ public class LinkedListHuman<Human> {
         ll.addHuman(pedro);
         ll.deleteHuman(belen);
         ll.printHumans(ll.root);
+        System.out.println("-----------");
+        System.out.println(ll.isEmpty());
+        System.out.println(ll.size());
 
 
     }

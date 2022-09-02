@@ -33,12 +33,6 @@ public class Doctor {
         this.availableDays = availableDays;
     }
 
-    private boolean iAmTheDoctor() {
-        System.out.println("I am the Doctor");
-        return true;
-    }
-
-
     @Override
     public String toString() {
         return "[Doctor specialty: " + getClass().getSimpleName() +

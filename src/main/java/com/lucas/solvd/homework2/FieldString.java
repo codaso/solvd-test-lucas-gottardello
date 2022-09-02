@@ -3,6 +3,7 @@ package com.lucas.solvd.homework2;
 import java.lang.reflect.Field;
 
 public class FieldString {
+    //class used in class Reflection
     public Field field;
     public String string;
 

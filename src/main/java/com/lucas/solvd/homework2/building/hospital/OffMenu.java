@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class OffMenu {
     Hospital hospital = new Hospital("");
     Scanner userInput_Option = new Scanner(System.in);
-    private static Logger logger = LogManager.getLogger(OffMenu.class);
+    private Logger logger = LogManager.getLogger(OffMenu.class);
 
 
     public void Off_Menu() {

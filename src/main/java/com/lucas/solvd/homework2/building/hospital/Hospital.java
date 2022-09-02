@@ -145,17 +145,12 @@ public class Hospital extends Building implements IHospital {
         patientList.remove(human);
     }
 
-
     //streams
     public List<Patient> filterPatientsByAge(int age) {
         return patientList.stream().filter(x -> x.age >= age).collect(Collectors.toList());
     }
 
     public List<String> patientListByAssignedDoctor() {
-        //question: trying to enter patient.injury.painlevel -->error
-        //but getting into patient.age works
-        //so i can't get into patient->object(injury)->painlevel
-        // can't return x.getInjury() ----> returns exception: .Hospital.lambda$patientListFilteredByPain$1
         return patientList.stream().map(x -> x.assignedDoctor).collect(Collectors.toList());
 
     }
@@ -182,8 +177,6 @@ public class Hospital extends Building implements IHospital {
     public void typeOfBuilding() {
         logger.info("My time of building is Hospital");
     }
-
-    //streams
 
 
 }

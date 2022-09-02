@@ -5,14 +5,12 @@ public class Date {
     public int month;
     public int year;
 
-    //Constructor
     public Date(int day, int month, int year) {
         this.day = day;
         this.month = month;
         this.year = year;
     }
 
-    //Getters
     public int getDay() {
         return day;
     }

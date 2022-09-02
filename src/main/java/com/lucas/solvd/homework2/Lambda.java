@@ -4,6 +4,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Lambda {
+    //information class
     public static void main(String[] args) {
         System.out.println(process("Hello World", str -> str.toUpperCase()));
         System.out.println(process2("World Hello", str -> str.toUpperCase()));

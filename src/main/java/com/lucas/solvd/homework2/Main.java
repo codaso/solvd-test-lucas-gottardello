@@ -9,13 +9,12 @@ import com.lucas.solvd.homework2.human.patient.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     private static Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         Scanner userInput2 = new Scanner(System.in);
         Hospital hospital = new Hospital("Hospital Dr. Pedro Solanet");

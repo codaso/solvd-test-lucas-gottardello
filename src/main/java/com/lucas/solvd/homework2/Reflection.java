@@ -1,5 +1,6 @@
 package com.lucas.solvd.homework2;
 
+import com.lucas.solvd.homework2.human.Human;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +23,6 @@ public class Reflection {
     public String[] getFieldNames(Field[] aux) {
         //getFieldNames ->returns an array String[], with size Field[] aux.length, of String elements:
         int n = 0;
-        String[] strArr = new String[n];
         Field field = null;
         //get size of input Field[] array, save it to n(n ∈ N ,N = {0,1,2,...,127});
         for (int i = 0; i < aux.length; i++) {
@@ -33,16 +33,16 @@ public class Reflection {
             }
         }
         //create array of size n, return array of field.getName();
-        String[] strArr2 = new String[n];
+        String[] strArr = new String[n];
         for (int j = 0; j < n; j++) {
             if (aux[j] != null) {
                 field = aux[j];
-                strArr2[j] = field.getName();
+                strArr[j] = field.getName();
             } else if (aux[j] == null) {
                 j = n;
             }
         }
-        return strArr2;
+        return strArr;
     }
 
     public FieldString[] getFieldStringArr(Field[] field_arr, String[] str_arr) {
@@ -79,14 +79,15 @@ public class Reflection {
 
     public static void main(String[] args) {
 
-        /*
+
         Reflection reflection = new Reflection();
         Human x = new Human();
         Field[] fields = reflection.getFields(x);
         String[] names = reflection.getFieldNames(fields);
         FieldString[] field_and_names = reflection.arrayOfField_String(x);
-
-         */
+        for (FieldString fieldString : field_and_names) {
+            System.out.println(fieldString);
+        }
 
 
     }

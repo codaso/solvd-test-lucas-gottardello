@@ -2,7 +2,7 @@ package com.lucas.solvd.database.dao;
 
 import java.util.List;
 
-public interface DAO<T, K> {
+public interface DAO<T> {
     void insert(T x) throws DAOException;
 
     void delete(T x) throws DAOException;

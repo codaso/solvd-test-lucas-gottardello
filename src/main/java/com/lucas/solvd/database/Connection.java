@@ -1,11 +1,10 @@
-package com.lucas.solvd.testingSqlWithJava;
+package com.lucas.solvd.database;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class test {
+public class Connection {
     public static void main(String[] args) throws SQLException {
         final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
         final String DB_URL = "jdbc:mysql://localhost:3306/olympic_games_db_2";
@@ -14,7 +13,7 @@ public class test {
         final String USER = "root";
         final String PASS = "CODO4450!!";
 
-        Connection connection = null;
+        java.sql.Connection connection = null;
 
         try {
             Class.forName(JDBC_DRIVER);

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.Function;
 
-public class Injury extends InvalidPainLevelException {
+public class Injury {
     private Logger logger = LogManager.getLogger(Injury.class);
 
     public String annoyance;
@@ -18,13 +18,10 @@ public class Injury extends InvalidPainLevelException {
     }
 
 
-    public Injury(String annoyance, int painLevel) {
-        try {
-            if (invalidPain.apply(painLevel)) {
-                throw new InvalidPainLevelException("Pain level must be between 1 & 10");
-            }
-        } catch (Exception e) {
-            logger.info("Exception occurred: " + e);
+    public Injury(String annoyance, int painLevel) throws InvalidPainLevelException {
+
+        if (invalidPain.apply(painLevel)) {
+            throw new InvalidPainLevelException("Pain level must be between 1 & 10");
         }
         this.annoyance = annoyance;
         this.painLevel = painLevel;

@@ -19,26 +19,21 @@ public class Human {
     public Human() {
     }
 
-    public Human(String name, String lastName, String gender, int age) {
-        try {
-            if (invalidName.apply(name) || invalidName.apply(lastName)) {
-                throw new InvalidNameException("Name should have at least 1 character");
-            }
-            if (invalidAge.apply(age)) {
-                throw new InvalidAgeException("Age must be greater than 1");
-            }
-            if (!validGender.apply(gender)) {
-                throw new InvalidGenderException("Gender must be 'male' or 'female' ");
-            }
-        } catch (InvalidGenderException | InvalidAgeException | InvalidNameException e) {
-            logger.error(e);
-            System.exit(-1);
-        } finally {
-            this.name = name;
-            this.lastname = lastName;
-            this.gender = gender;
-            this.age = age;
+    public Human(String name, String lastName, String gender, int age) throws InvalidNameException, InvalidAgeException, InvalidGenderException {
+
+        if (invalidName.apply(name) || invalidName.apply(lastName)) {
+            throw new InvalidNameException("Name should have at least 1 character");
         }
+        if (invalidAge.apply(age)) {
+            throw new InvalidAgeException("Age must be greater than 1");
+        }
+        if (!validGender.apply(gender)) {
+            throw new InvalidGenderException("Gender must be 'male' or 'female' ");
+        }
+        this.name = name;
+        this.lastname = lastName;
+        this.gender = gender;
+        this.age = age;
 
     }
 

@@ -1,6 +1,5 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.reflection;
 
-import com.lucas.solvd.homework2.human.Human;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,9 +76,8 @@ public class Reflection {
         }
     }
 
+    /*
     public static void main(String[] args) {
-
-
         Reflection reflection = new Reflection();
         Human x = new Human();
         Field[] fields = reflection.getFields(x);
@@ -91,4 +89,6 @@ public class Reflection {
 
 
     }
+
+     */
 }

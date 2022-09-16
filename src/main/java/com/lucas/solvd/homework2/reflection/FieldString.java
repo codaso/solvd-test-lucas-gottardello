@@ -1,4 +1,4 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.reflection;
 
 import java.lang.reflect.Field;
 

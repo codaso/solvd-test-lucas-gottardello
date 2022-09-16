@@ -3,8 +3,13 @@ package com.lucas.solvd.homework2.threads;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Task implements Runnable {
-    private Logger logger = LogManager.getLogger(Task.class);
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class Task_testingclass implements Runnable {
+    private Logger logger = LogManager.getLogger(Task_testingclass.class);
     public int a;
     public boolean p;
     public String str;
@@ -37,6 +42,7 @@ public class Task implements Runnable {
          */
     }
 
+
     /*
     public void execute(Runnable r) {
         Executor executor = new Task();
@@ -45,7 +51,7 @@ public class Task implements Runnable {
         });
     }
 
-
+     */
 
 
     public void execute(Runnable r) {
@@ -58,18 +64,16 @@ public class Task implements Runnable {
         executorService.shutdown();
     }
 
-     */
+    /*
 
     public static void main(String[] args) {
-
-
-        //ExecutorService executor = Executors.newFixedThreadPool(7);
-        //Task task = new Task();
-        //task.execute(task);
-        //executor.shutdown();
-
-
+        ExecutorService executor = Executors.newFixedThreadPool(7);
+        Task task = new Task();
+        task.execute(task);
+        executor.shutdown();
     }
+
+     */
 
 
 }

@@ -5,11 +5,14 @@ import java.util.function.Function;
 
 public class Lambda {
     //information class
+    /*
     public static void main(String[] args) {
         System.out.println(process("Hello World", str -> str.toUpperCase()));
         System.out.println(process2("World Hello", str -> str.toUpperCase()));
         System.out.println(process3("Hola Mundo", 5, (str, i) -> str.substring(i)));
     }
+
+     */
 
     static String process(String str, Processor processor) {
         return processor.process(str);

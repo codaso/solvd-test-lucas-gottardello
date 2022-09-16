@@ -1,5 +1,8 @@
 package com.lucas.solvd.homework2.human.patient;
 
+import com.lucas.solvd.homework2.exceptions.InvalidAgeException;
+import com.lucas.solvd.homework2.exceptions.InvalidGenderException;
+import com.lucas.solvd.homework2.exceptions.InvalidNameException;
 import com.lucas.solvd.homework2.human.Human;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +19,7 @@ public class Patient extends Human {
         super();
     }
 
-    public Patient(String name, String lastName, String gender, int age) {
+    public Patient(String name, String lastName, String gender, int age) throws InvalidAgeException, InvalidNameException, InvalidGenderException {
         super(name, lastName, gender, age);
         this.patientBalance = 0;
     }

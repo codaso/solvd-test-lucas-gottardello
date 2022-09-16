@@ -1,4 +1,4 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.linkedlisthuman;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,18 +66,20 @@ public class LinkedListHuman<Human> {
     }
 
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return this.root == null;
     }
 
 
-    public int size() {
+    public void size() {
         int siz = 0;
-        while (this.root != null) {
+        NodeHuman a = new NodeHuman<>();
+        a = root;
+        while (a != null) {
             siz++;
-            this.root = this.root.next;
+            a = a.next;
         }
-        return siz;
+        logger.info(siz);
     }
 
     public void printHumans(NodeHuman list) {
@@ -122,37 +124,5 @@ public class LinkedListHuman<Human> {
         return this._retrieveObject(obj, curr.next);
     }
 
-
-    public static void main(String[] args) {
-        LinkedListHuman ll = new LinkedListHuman();
-        com.lucas.solvd.homework2.human.Human lucas = new com.lucas.solvd.homework2.human.Human("Lucas",
-                "Gottardello", "male", 27);
-
-        com.lucas.solvd.homework2.human.Human juan = new com.lucas.solvd.homework2.human.Human("Juan",
-                "GQWE", "male", 16);
-
-        com.lucas.solvd.homework2.human.Human lucia = new com.lucas.solvd.homework2.human.Human("Lucia",
-                "dasdwe", "female", 35);
-        com.lucas.solvd.homework2.human.Human belen = new com.lucas.solvd.homework2.human.Human("Belen",
-                "jghjhgj", "female", 22);
-
-
-        System.out.println("-----------");
-        ll.addHuman(lucas);
-        ll.addHuman(juan);
-        ll.addHuman(lucia);
-        ll.addHuman(belen);
-        ll.printHumans(ll.root);
-        System.out.println("-----------");
-        com.lucas.solvd.homework2.human.Human pedro = (com.lucas.solvd.homework2.human.Human) ll.retrieveObject(lucas);
-        ll.addHuman(pedro);
-        ll.deleteHuman(belen);
-        ll.printHumans(ll.root);
-        System.out.println("-----------");
-        System.out.println(ll.isEmpty());
-        System.out.println(ll.size());
-
-
-    }
 }
 

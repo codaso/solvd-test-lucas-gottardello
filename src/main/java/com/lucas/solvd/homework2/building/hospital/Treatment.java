@@ -8,20 +8,16 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.Function;
 
-public class Treatment extends InvalidAnnoyanceException {
+public class Treatment {
 
     private Logger logger = LogManager.getLogger(Treatment.class);
     public Doctors[] doctorsEnum = Doctors.values();
 
 
-    public int treat(String annoyance, Patient p) {
-        try {
-            if (invalidAnnoyance.apply(annoyance)) {
-                throw new InvalidAnnoyanceException("Annoyance must be either mental, physical, heart or skin related");
-            }
-        } catch (Exception e) {
-            logger.info("Exception ocurred: " + e);
-            System.exit(-1);
+    public int treat(String annoyance, Patient p) throws InvalidAnnoyanceException {
+
+        if (invalidAnnoyance.apply(annoyance)) {
+            throw new InvalidAnnoyanceException("Annoyance must be either mental, physical, heart or skin related");
         }
         if (annoyance.equals("heart")) {
             p.assignedDoctor = doctorsEnum[0].name();

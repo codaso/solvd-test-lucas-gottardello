@@ -5,8 +5,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class FileAndStrings {
     public static void main(String[] args) throws IOException {
@@ -41,6 +43,8 @@ public class FileAndStrings {
         System.out.println(StringUtils.isBlank(language));
 
          */
+
+
         //count unique words in a file
         String content = FileUtils.readFileToString(fileIn, "UTF-8");
         HashMap<String, Integer> map = new HashMap<>();
@@ -55,8 +59,33 @@ public class FileAndStrings {
                 map.put(word, 1);
             }
         }
-        System.out.println(map.keySet());
-        System.out.println(map.values());
+        //System.out.println(map.keySet());
+        //System.out.println(map.values());
 
+        //new file:
+        File fileResult = new File("src/main/resources/text03_result.txt");
+        Scanner scan = new Scanner(fileIn);
+        String fileContent = "";
+        String lineJump = StringUtils.LF;
+        //insert into "fileContent" the words of each line in "fileIn"
+        while (scan.hasNext()) {
+            fileContent = fileContent.concat(scan.nextLine() + lineJump);
+        }
+        //paste "fileContent" into new file "fileResult":
+        FileWriter write = new FileWriter(fileResult);
+        write.write(fileContent);
+
+        //paste each value stored in map.values() (amount of unique words) into "fileResult",
+        //below the whole text lines:
+        write.write("[");
+        for (Integer i : map.values()) {
+            for (String key : map.keySet()) {
+                String str = "" + key + " : " + i + ", ";
+                write.write(str);
+            }
+
+        }
+        write.write("]");
+        write.close();
     }
 }

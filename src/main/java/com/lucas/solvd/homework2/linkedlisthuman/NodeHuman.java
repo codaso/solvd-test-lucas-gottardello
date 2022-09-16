@@ -1,4 +1,4 @@
-package com.lucas.solvd.homework2;
+package com.lucas.solvd.homework2.linkedlisthuman;
 
 public class NodeHuman<Human> {
     public com.lucas.solvd.homework2.human.Human human;

@@ -72,20 +72,21 @@ public class FileAndStrings {
             fileContent = fileContent.concat(scan.nextLine() + lineJump);
         }
         //paste "fileContent" into new file "fileResult":
-        FileWriter write = new FileWriter(fileResult);
-        write.write(fileContent);
-
-        //paste each value stored in map.values() (amount of unique words) into "fileResult",
-        //below the whole text lines:
-        write.write("[");
-        for (Integer i : map.values()) {
-            for (String key : map.keySet()) {
-                String str = "" + key + " : " + i + ", ";
-                write.write(str);
+        try (FileWriter write = new FileWriter(fileResult)) {
+            write.write(fileContent);
+            //paste each value stored in map.values() (amount of unique words) into "fileResult",
+            //below the whole text lines:
+            write.write("[");
+            for (Integer i : map.values()) {
+                for (String key : map.keySet()) {
+                    String str = "" + key + " : " + i + ", ";
+                    write.write(str);
+                }
             }
-
+            write.write("]");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        write.write("]");
-        write.close();
+
     }
 }

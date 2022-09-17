@@ -5,7 +5,6 @@ import com.lucas.solvd.homework2.exceptions.InvalidAgeException;
 import com.lucas.solvd.homework2.exceptions.InvalidGenderException;
 import com.lucas.solvd.homework2.exceptions.InvalidNameException;
 import com.lucas.solvd.homework2.human.Human;
-import com.lucas.solvd.homework2.human.doctor.Doctor;
 import com.lucas.solvd.homework2.human.patient.Patient;
 import com.lucas.solvd.homework2.linkedlisthuman.LinkedListHuman;
 import com.lucas.solvd.homework2.reflection.FieldString;
@@ -15,24 +14,18 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class OffMenu {
-    Hospital hospital = new Hospital("");
+
     Scanner userInput_Option = new Scanner(System.in);
     private Logger logger = LogManager.getLogger(OffMenu.class);
 
 
-    public void Off_Menu() throws InvalidAgeException, InvalidNameException, InvalidGenderException {
-        Doctor[] doctorArr = new Doctor[6];
-        hospital.loadDoctors(doctorArr);
-        LinkedList<Patient> patientList = new LinkedList<>();
-        LinkedListHuman<Human> humanList = new LinkedListHuman<>();
-        GeneratePatients generatePatients = new GeneratePatients();
-        generatePatients.generatePatients(patientList);
+    public OffMenu(Hospital hospital) throws InvalidAgeException, InvalidNameException, InvalidGenderException {
+
         boolean offMen = true;
         while (offMen) {
             logger.info("Select the method you want to run or exit off-menu");
@@ -50,33 +43,33 @@ public class OffMenu {
             int option = userInput_Option.nextInt();
             switch (option) {
                 case 1: {
-                    hospital.printPatientsByName(patientList);
+                    hospital.printPatientsByName();
                     break;
                 }
                 case 2: {
-                    List<String> listByAssignedDoctor = hospital.patientListByAssignedDoctor(patientList);
+                    List<String> listByAssignedDoctor = hospital.patientListByAssignedDoctor();
                     hospital.printList(listByAssignedDoctor);
                     break;
                 }
                 case 3: {
                     logger.info("Enter an int number to lower bound users age: ");
                     int a = userInput_Option.nextInt();
-                    List<Patient> listByAge = hospital.filterPatientsByAge(patientList, a);
+                    List<Patient> listByAge = hospital.filterPatientsByAge(a);
                     hospital.printList(listByAge);
                     break;
                 }
                 case 4: {
-                    long c = hospital.countPatients(patientList);
+                    long c = hospital.countPatients();
                     logger.info("Number of patients: " + c);
                     break;
                 }
                 case 5: {
-                    Optional p = hospital.findFirstPatient(patientList);
+                    Optional p = hospital.findFirstPatient();
                     logger.info(p);
                     break;
                 }
                 case 6: {
-                    hospital.docPrescriptions(doctorArr);
+                    hospital.docPrescriptions();
                     break;
                 }
                 case 7: {
@@ -84,7 +77,7 @@ public class OffMenu {
                     break;
                 }
                 case 8: {
-                    hospital.printPatientList(patientList);
+                    hospital.printPatientList();
                     break;
                 }
                 case 9: {
@@ -95,7 +88,7 @@ public class OffMenu {
                                 "2) Print methods of class Human\n" +
                                 "3) Print Sorted names of fields of class Human\n" +
                                 "4) Print methods return type of class Human\n" +
-                                "5) Exit\n");
+                                "11) Exit\n");
                         int option_reflection = userInput_Option.nextInt();
                         Human h = new Human();
                         Reflection reflection = new Reflection();
@@ -127,7 +120,7 @@ public class OffMenu {
                                 reflection.printMethodReturnType(h);
                                 break;
                             }
-                            case 5: {
+                            case 11: {
                                 option9 = false;
                                 break;
                             }
@@ -140,29 +133,34 @@ public class OffMenu {
                 case 10: {
                     boolean option10 = true;
                     while (option10) {
+                        LinkedListHuman<Human> humanList = new LinkedListHuman<>();
                         logger.info("LinkedListHuman: " + "\n" +
                                 "1) Create a Human and add it to the list\n" +
                                 "2) Print humans with index\n" +
                                 "3) Print-> is the list empty?\n" +
                                 "4) Print size of the list\n" +
                                 "5) Generate 5 default humans and add them to the list\n" +
-                                "6) Exit\n");
+                                "11) Exit\n");
                         int option_LinkedListHuman = userInput_Option.nextInt();
                         switch (option_LinkedListHuman) {
                             case 1: {
-                                Scanner userInput = new Scanner(System.in);
-                                logger.info("Enter Human name");
-                                String name = userInput.nextLine();
-                                logger.info("Enter Human last-name");
-                                String lastname = userInput.nextLine();
-                                logger.info("Enter Human gender");
-                                String gender = userInput.nextLine();
-                                logger.info("Enter Human age");
-                                int age = userInput.nextInt();
-                                Human h = new Human(name, lastname, gender, age);
-                                humanList.addHuman(h);
-                                logger.info("Human " + h.name, h.lastname, h.gender, h.age +
-                                        "successfully added!");
+                                try {
+                                    Scanner userInput = new Scanner(System.in);
+                                    logger.info("Enter Human name");
+                                    String name = userInput.nextLine();
+                                    logger.info("Enter Human last-name");
+                                    String lastname = userInput.nextLine();
+                                    logger.info("Enter Human gender");
+                                    String gender = userInput.nextLine();
+                                    logger.info("Enter Human age");
+                                    int age = userInput.nextInt();
+                                    Human h = new Human(name, lastname, gender, age);
+                                    humanList.addHuman(h);
+                                    logger.info("Human " + h.name, h.lastname, h.gender, h.age +
+                                            "successfully added!");
+                                } catch (InvalidAgeException | InvalidNameException | InvalidGenderException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             }
                             case 2: {
@@ -185,7 +183,7 @@ public class OffMenu {
                                 }
                                 break;
                             }
-                            case 6: {
+                            case 11: {
                                 option10 = false;
                                 break;
                             }
@@ -194,6 +192,7 @@ public class OffMenu {
                                 break;
                             }
                         }
+                        humanList = null;
                     }
                 }
                 case 11: {

@@ -2,7 +2,10 @@ package com.lucas.solvd.homework2.building.hospital;
 
 import com.lucas.solvd.homework2.Date;
 import com.lucas.solvd.homework2.building.Building;
+import com.lucas.solvd.homework2.exceptions.InvalidAgeException;
 import com.lucas.solvd.homework2.exceptions.InvalidAnnoyanceException;
+import com.lucas.solvd.homework2.exceptions.InvalidGenderException;
+import com.lucas.solvd.homework2.exceptions.InvalidNameException;
 import com.lucas.solvd.homework2.human.Human;
 import com.lucas.solvd.homework2.human.doctor.Doctor;
 import com.lucas.solvd.homework2.human.doctor.Doctors;
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
 
 public class Hospital extends Building implements IHospital {
     Logger logger = LogManager.getLogger(Hospital.class);
+    Doctor[] doctorArr = new Doctor[6];
+    LinkedList<Patient> patientList = new LinkedList<>();
 
     public Hospital() {
         super("");
@@ -28,7 +33,7 @@ public class Hospital extends Building implements IHospital {
         super(hospitalName);
     }
 
-    public void loadDoctors(Doctor[] doctorArr) {
+    public void loadDoctors() {
         Cardiologist cardiologist = new Cardiologist();
         Psychologist psychologist = new Psychologist();
         Clinician clinician = new Clinician();
@@ -43,13 +48,31 @@ public class Hospital extends Building implements IHospital {
         doctorArr[5] = traumatologist;
     }
 
-
-    public void addPatient(LinkedList<Patient> patientList, Patient patient) {
-        patientList.add(patient);
+    public void generatePatients() {
+        try {
+            Patient patient1 = new Patient("patient1", "one", "male", 10);
+            Patient patient2 = new Patient("patient2", "two", "female", 15);
+            Patient patient3 = new Patient("patient3", "three", "male", 20);
+            Patient patient4 = new Patient("patient4", "four", "female", 25);
+            Patient patient5 = new Patient("patient5", "five", "female", 30);
+            Patient patient6 = new Patient("patient6", "six", "male", 35);
+            addPatient(patient1);
+            addPatient(patient2);
+            addPatient(patient3);
+            addPatient(patient4);
+            addPatient(patient5);
+            addPatient(patient6);
+        } catch (InvalidAgeException | InvalidNameException | InvalidGenderException e) {
+            logger.error(e);
+        }
     }
 
 
-    public void printPatientList(LinkedList<Patient> patientList) {
+    public void addPatient(Patient patient) {
+        patientList.add(patient);
+    }
+    
+    public void printPatientList() {
         patientList.stream().forEach(System.out::println);
     }
 
@@ -66,24 +89,24 @@ public class Hospital extends Building implements IHospital {
         logger.info(Doctors.TRAUMATOLOGIST.mainFocus());
     }
 
-    public int getDocCost(Doctor[] doctorArr, int i) {
+    public int getDocCost(int i) {
         return doctorArr[i].getSalary();
     }
 
-    public String getDocPrescription(Doctor[] doctorArr, int i) {
+    public String getDocPrescription(int i) {
         return doctorArr[i].getPrescription();
     }
 
-    public void docPrescriptions(Doctor[] doctorArr) {
-        logger.info(getDocPrescription(doctorArr, 0));
-        logger.info(getDocPrescription(doctorArr, 1));
-        logger.info(getDocPrescription(doctorArr, 2));
-        logger.info(getDocPrescription(doctorArr, 3));
-        logger.info(getDocPrescription(doctorArr, 4));
-        logger.info(getDocPrescription(doctorArr, 5));
+    public void docPrescriptions() {
+        logger.info(getDocPrescription(0));
+        logger.info(getDocPrescription(1));
+        logger.info(getDocPrescription(2));
+        logger.info(getDocPrescription(3));
+        logger.info(getDocPrescription(4));
+        logger.info(getDocPrescription(5));
     }
 
-    public String getDocAvailableDays(Doctor[] doctorArr, int i) {
+    public String getDocAvailableDays(int i) {
         return doctorArr[i].getAvailableDays();
     }
 
@@ -96,41 +119,11 @@ public class Hospital extends Building implements IHospital {
         logger.info(Doctors.TRAUMATOLOGIST.name());
     }
 
-    public Date searchFreeDate(ArrayList<Date> dateList) {
-        int currentMonth = getCurrentMonth();
-        Date d = new Date(1, currentMonth, 2022);
-        while (d.month < 13) {
-            if (dateList.contains(d)) {
-                d.day++;
-            }
-            if (d.day == 31) {
-                d.day = 1;
-                d.month++;
-            } else if (!dateList.contains(d)) {
-
-                logger.info(" [Your date with the doctor will be on day: " + d.day + ", month: " + d.month + ",year: " + d.year + "]");
-                return d;
-            }
-            if (d.month == 12) {
-                logger.info("We do not have an available day for you, come back next year");
-                return null;
-            }
-        }
-        return null;
-    }
-
-    int getCurrentMonth() {
-        return 8;
-    }
 
     public void registerDate(ArrayList<Date> dateList, Date date) {
         dateList.add(date);
     }
 
-    public void registerAppointment(ArrayList<Appointment> appointmentList, Patient patient, Date date) {
-        Appointment appointment = new Appointment(patient, date);
-        appointmentList.add(appointment);
-    }
 
     public void printAppointments(ArrayList<Appointment> appointmentList) {
         for (Appointment e : appointmentList) {
@@ -145,30 +138,30 @@ public class Hospital extends Building implements IHospital {
 
     }
 
-    public void deletePatient(LinkedList<Patient> patientList, Human human) {
+    public void deletePatient(Human human) {
         patientList.remove(human);
     }
 
     //streams
-    public List<Patient> filterPatientsByAge(LinkedList<Patient> patientList, int age) {
+    public List<Patient> filterPatientsByAge(int age) {
         return patientList.stream().filter(x -> x.age >= age).collect(Collectors.toList());
     }
 
-    public List<String> patientListByAssignedDoctor(LinkedList<Patient> patientList) {
+    public List<String> patientListByAssignedDoctor() {
         return patientList.stream().map(x -> x.assignedDoctor).collect(Collectors.toList());
 
     }
 
-    public void printPatientsByName(LinkedList<Patient> patientList) {
+    public void printPatientsByName() {
         patientList.stream().sorted((x, y) -> y.compareName(x)).forEach(System.out::println);
     }
 
-    public long countPatients(LinkedList<Patient> patientList) {
+    public long countPatients() {
         return patientList.stream().count();
     }
 
 
-    public Optional<Patient> findFirstPatient(LinkedList<Patient> patientList) {
+    public Optional<Patient> findFirstPatient() {
         return patientList.stream().findFirst();
     }
 

@@ -3,3 +3,4 @@ Tasks.iml
 out/
 target/
 propertieslogs.log
+log4j2.properties

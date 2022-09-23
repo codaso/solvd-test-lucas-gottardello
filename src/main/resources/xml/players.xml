@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<players>
+    <player>
+        <id>1</id>
+        <name>Lucas</name>
+        <lastname>Gott</lastname>
+        <country>Argentina</country>
+        <gender>Male</gender>
+        <countries_id>3</countries_id>
+    </player>
+    <player>
+        <id>2</id>
+        <name>Belen</name>
+        <lastname>Bustamante</lastname>
+        <country>Mexico</country>
+        <gender>Female</gender>
+        <countries_id>4</countries_id>
+    </player>
+    <player>
+        <id>3</id>
+        <name>Marcelo</name>
+        <lastname>Conocelo</lastname>
+        <country>Argentina</country>
+        <gender>Male</gender>
+        <countries_id>3</countries_id>
+    </player>
+</players>
+

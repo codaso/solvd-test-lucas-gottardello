@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player>
+    <id>1</id>
+    <name>Lucas</name>
+    <lastname>Gott</lastname>
+    <country>Argentina</country>
+    <gender>Male</gender>
+    <countries_id>3</countries_id>
+</player>
+
+
